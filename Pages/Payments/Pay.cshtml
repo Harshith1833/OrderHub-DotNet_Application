@@ -23,7 +23,7 @@
             <label class="radio"><input type="radio" name="Method" value="@m" checked="@(m == "Card")" /> @m</label>
         }
         <div class="form-actions">
-            <button class="btn" type="submit">Pay @Model.Order.Total.ToString("C")</button>
+            <button class="btn" type="submit">Pay @Model.Order.UnitPrice.ToString("C")</button>
             <a href="/Orders">Back</a>
         </div>
         <p class="muted small">Demo only: no real payment is processed.</p>

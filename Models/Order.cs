@@ -16,7 +16,7 @@ public class Order
 
     public int Quantity { get; set; } = 1;
 
-    [Range(0.01, 1000000)]
+    [Range(0.01, 999999.99, ErrorMessage = "Unit price must be between 0.01 and 1000000.")]
     [Display(Name = "Unit price")]
     public decimal UnitPrice { get; set; }
 

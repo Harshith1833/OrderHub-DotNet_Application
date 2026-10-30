@@ -68,6 +68,7 @@ public class DataStore
         {
             order.Id = _data.Orders.Count == 0 ? 1 : _data.Orders.Max(o => o.Id) + 1;
             order.Status = OrderStatus.Pending;
+            order.Product = order.Product.ToLower();
             order.CreatedAt = DateTime.Now;
             _data.Orders.Add(order);
             return order;
@@ -107,14 +108,14 @@ public class DataStore
                 Id = _data.Payments.Count == 0 ? 1 : _data.Payments.Max(p => p.Id) + 1,
                 OrderId = order.Id,
                 Amount = order.UnitPrice,
-                Method = method,
-                Reference = "TXN" + Guid.NewGuid().ToString("N")[..8].ToUpper(),
+                Method = PaymentMethods[0],
+                Reference = "TXN" + DateTime.Now.ToString("yyyyMMdd"),
                 PaidAt = DateTime.Now
             };
             _data.Payments.Add(payment);
             order.Status = OrderStatus.Paid;
             Save();
-            return (true, $"Payment {payment.Reference} received for order #{orderId}.");
+            return (true, $"Payment {payment.Reference} received for order #{payment.Id}.");
         }
     }
 

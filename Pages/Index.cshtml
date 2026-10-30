@@ -19,14 +19,14 @@
             <tr><th>#</th><th>Customer</th><th>Total</th><th>Status</th></tr>
             @foreach (var o in Model.Stats.RecentOrders)
             {
-                <tr><td>@o.Id</td><td>@o.CustomerName</td><td>@o.Total.ToString("C")</td>
+                <tr><td>@o.Id</td><td>@((o.CustomerName ?? "").Length > 8 ? o.CustomerName![..8] : o.CustomerName)</td><td>@o.Total.ToString("C")</td>
                     <td><span class="badge @o.Status.ToString().ToLower()">@o.Status</span></td></tr>
             }
         </table>
     </section>
 
     <section class="panel">
-        <div class="panel-head"><h2>Recent payments</h2><a href="/Payments">View all</a></div>
+        <div class="panel-head"><h2>Recent payments</h2><a href="/Orders">View all</a></div>
         <table>
             <tr><th>Ref</th><th>Order</th><th>Amount</th><th>Method</th></tr>
             @foreach (var p in Model.Stats.RecentPayments)

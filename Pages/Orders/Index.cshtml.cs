@@ -26,7 +26,7 @@ public class IndexModel : PageModel
         var (_, total) = _store.GetOrdersPage(Status, 1, size);
         TotalCount = total;
         TotalPages = Math.Max(1, (int)Math.Ceiling(total / (double)size));
-        PageNo = Math.Min(Math.Max(PageNo, 1), TotalPages);
+        PageNo = Math.Max(PageNo, 1);
         Orders = _store.GetOrdersPage(Status, PageNo, size).items;
     }
 

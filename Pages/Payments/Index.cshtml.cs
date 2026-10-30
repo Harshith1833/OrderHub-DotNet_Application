@@ -14,7 +14,7 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        Unpaid = _store.GetOrders(OrderStatus.Pending);
+        Unpaid = _store.GetOrders(OrderStatus.Pending).Take(5).ToList();
         History = _store.GetPayments();
     }
 }
