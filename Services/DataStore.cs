@@ -115,7 +115,7 @@ public class DataStore
             _data.Payments.Add(payment);
             order.Status = OrderStatus.Paid;
             Save();
-            return (true, $"Payment {payment.Reference} received for order #{payment.Id}.");
+            return (true, $"Payment {payment.Reference} received for order #{order.Id}.");
         }
     }
 
